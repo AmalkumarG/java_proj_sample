@@ -52,11 +52,17 @@ pipeline{
             
         }
         stage("unstash"){
+            when{expression{$params.servers=="production"}}
             agent{
-                label "node2"
+                label "node1"
             }
             steps{
-               unstash 'build-war'
+                timeout(time:5,unit:'DAYS'){
+                    input message: 'waiting for approval'
+                    unstash 'build-war'
+                    echo "deploy successfull"
+                }
+               
             }
         }
     }
