@@ -21,8 +21,23 @@ pipeline{
         }
 
         stage("test"){
-            steps{
-                echo "this is test block $params.servers"
+            parallel{
+                stage("testA"){
+                    agent{
+                        label "node1"
+                    }
+                    steps{
+                        echo "this is test A"
+                    }
+                }
+                  stage("testB"){
+                    agent{
+                        label "node2"
+                    }
+                    steps{
+                        echo "this is test B"
+                    }
+                }
             }
             
         }
