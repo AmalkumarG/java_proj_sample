@@ -45,8 +45,20 @@ pipeline{
         stage("deploy"){
             steps{
                 echo "this is deploy block"
+                dir("target/"){
+                    stash name:'build-war',includes:'*.war'
+                } 
             }
             
         }
+        stage("unstash"){
+            agent{
+                label "node2"
+            }
+            steps{
+               unstash 'build-war'
+            }
+        }
     }
 }
+
