@@ -52,7 +52,7 @@ pipeline{
             
         }
         stage("unstash"){
-            when{expression{$params.servers=="production"}}
+            when{expression{params.servers=="production"}}
             agent{
                 label "node1"
             }
