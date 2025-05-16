@@ -23,6 +23,7 @@ pipeline{
         stage('deploy'){
             steps{
                 echo 'this is deploy'
+                sh "docker rm tomcat"
                 sh "docker run -d --name tomcat -p 80:8080 tomcat"
             }
         }
