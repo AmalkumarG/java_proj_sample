@@ -5,11 +5,15 @@ pipeline{
     tools{
         maven 'maven123'
     }
+    parameters {
+        string defaultValue: 'hello_all', name: 'value'
+    }
     stages{
         stage('build'){
             steps{
-                echo "this is build"
+                echo "this is $params.value"
                 sh "mvn clean package"
+                
                 
             }
         }
