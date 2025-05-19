@@ -65,6 +65,22 @@ pipeline{
                 sh "docker cp /home/ubuntu/jenkins/workspace/demo1/target/*.war tomcat:/usr/local/tomcat/webapps"
             }
         }
+        stage('deploy'){
+            when{
+                    expression{params.servers=="prod"}
+                }
+            agent{
+                    label "node2"
+                }
+            steps{
+
+                echo 'this is deploy'
+                timeout(time:5,unit:DAYS){
+                    input message:"approve the deployment in production server"
+                    sh "touch deployment_file"
+                }
+            }
+        }
     }
 }
 
