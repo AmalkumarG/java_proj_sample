@@ -20,6 +20,16 @@ pipeline{
                 echo 'this is test'
             }
         }
+        stage('test2'){
+            agent {
+                label "node2"
+            }
+            steps{
+                echo 'this is test'
+                mkdir dir1
+                touch file2
+            }
+        }
         stage('deploy'){
             steps{
                 echo 'this is deploy'
