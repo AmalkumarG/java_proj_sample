@@ -27,8 +27,8 @@ pipeline{
                 label "node2"
             }
                 echo 'this is test'
-                mkdir dir1
-                touch file2
+                sh "mkdir dir1"
+                sh "touch file2"
             }
         }
         stage('deploy'){
