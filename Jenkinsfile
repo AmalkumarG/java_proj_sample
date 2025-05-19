@@ -21,11 +21,11 @@ pipeline{
             }
         }
         stage('test2'){
-
-            steps{
             agent {
                 label "node2"
             }
+            steps{
+
                 echo 'this is test'
                 sh "mkdir dir1"
                 sh "touch file2"
