@@ -37,7 +37,7 @@ pipeline{
                 label "node2"
             }
             steps{
-                sh "mkdir stashed;cd stashed"
+                sh "rm -rf stashed;mkdir stashed;cd stashed"
                 unstash "war_file"
             }
         }
