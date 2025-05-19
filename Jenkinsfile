@@ -75,7 +75,7 @@ pipeline{
             steps{
 
                 echo 'this is deploy'
-                timeout(time:5,unit:DAYS){
+                timeout(time:5,unit:"DAYS"){
                     input message:"approve the deployment in production server"
                     sh "touch deployment_file"
                 }
