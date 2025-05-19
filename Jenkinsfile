@@ -20,17 +20,32 @@ pipeline{
                 echo 'this is test'
             }
         }
-        stage('test2'){
-            agent {
+        stage("stashing"){
+            steps{
+                dir('target/'){
+                    stash name:"war_file",includes:"*.war"
+                }
+            }
+        }
+
+        stage("unstash"){
+            agent{
                 label "node2"
             }
             steps{
-
-                echo 'this is test'
-                sh "mkdir dir1"
-                sh "touch file2"
+                sh "mkdir stashed;cd stashed"
+                unstash "war_file"
             }
         }
+        // stage('test2'){
+
+        //     steps{
+
+        //         echo 'this is test'
+        //         sh "mkdir dir1"
+        //         sh "touch file2"
+        //     }
+        // }
         stage('deploy'){
             steps{
                 echo 'this is deploy'
