@@ -51,13 +51,15 @@ pipeline{
         //     }
         // }
         stage('deploy'){
-            steps{
-                when{
+            when{
                     expression{params.servers=="dev"}
                 }
-                agent{
+            agent{
                     label "node1"
                 }
+            steps{
+
+                
                 echo 'this is deploy'
                 sh "docker stop tomcat && docker rm tomcat"
                 sh "docker run -d --name tomcat -p 80:8080 tomcat"
