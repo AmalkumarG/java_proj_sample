@@ -59,11 +59,10 @@ pipeline{
                 }
             steps{
 
-                
                 echo 'this is deploy'
                 sh "docker stop tomcat && docker rm tomcat"
                 sh "docker run -d --name tomcat -p 80:8080 tomcat"
-                sh "docker cp target/*.war tomcat:/usr/local/tomcat/webapps"
+                sh "docker cp /home/ubuntu/jenkins/workspace/demo1/target/*.war tomcat:/usr/local/tomcat/webapps"
             }
         }
     }
