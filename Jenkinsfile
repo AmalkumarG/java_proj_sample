@@ -65,7 +65,7 @@ pipeline{
                 sh "docker cp /home/ubuntu/jenkins/workspace/demo1/target/*.war tomcat:/usr/local/tomcat/webapps"
             }
         }
-        stage('deploy'){
+        stage('deploy on prod'){
             when{
                     expression{params.servers=="prod"}
                 }
