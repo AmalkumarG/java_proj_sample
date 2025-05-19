@@ -6,7 +6,7 @@ pipeline{
         maven 'maven123'
     }
     parameters {
-        string defaultValue: 'hello_all', name: 'value'
+        choice choices: ['prod', 'dev'], name: 'servers'
     }
     options{
         skipDefaultCheckout(true)
@@ -52,6 +52,12 @@ pipeline{
         // }
         stage('deploy'){
             steps{
+                when{
+                    expression{params.servers=="dev"}
+                }
+                agent{
+                    label "node1"
+                }
                 echo 'this is deploy'
                 sh "docker stop tomcat && docker rm tomcat"
                 sh "docker run -d --name tomcat -p 80:8080 tomcat"
