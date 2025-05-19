@@ -8,9 +8,13 @@ pipeline{
     parameters {
         string defaultValue: 'hello_all', name: 'value'
     }
+    options{
+        skipDefaultCheckout(true)
+    }
     stages{
         stage('build'){
             steps{
+                checkout scm
                 echo "this is $params.value"
                 sh "mvn clean package"
             }
