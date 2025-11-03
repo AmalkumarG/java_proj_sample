@@ -2,6 +2,9 @@ pipeline{
    agent{
     label 'node1' 
    } 
+   tools{
+    maven "maven123"
+   }
    stages{
  
     stage("build"){
