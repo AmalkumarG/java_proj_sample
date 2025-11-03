@@ -1,7 +1,8 @@
 pipeline{
-   agent{
-    label 'node1' 
-   } 
+agent{
+    label "node1"
+}
+
    tools{
     maven "maven123"
    }
@@ -12,8 +13,12 @@ pipeline{
    stages{
  
     stage("build"){
+        agent{
+            label 'node1'
+        }
         steps{
             echo "build stage"
+            checkout scm
             // sh "mvn package"
         }
     }
