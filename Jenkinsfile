@@ -3,14 +3,11 @@ pipeline{
     label 'node1' 
    } 
    stages{
-    stage("git clone"){
-        steps{
-            echo "git clone stage"
-        }
-    }
+ 
     stage("build"){
         steps{
             echo "build stage"
+            sh "mvn package"
         }
     }
     stage("test"){
