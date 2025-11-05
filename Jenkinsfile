@@ -24,7 +24,7 @@ agent none
             label 'node1'
         }
         steps{
-            sh "mkdir unstash"
+            sh "mkdir -p unstash"
             dir('unstash'){
                 unstash 'build'
             }
