@@ -1,9 +1,7 @@
 pipeline{
 
 
-   tools{
-    maven "maven123"
-   }
+
     options {
     skipDefaultCheckout true
     }
