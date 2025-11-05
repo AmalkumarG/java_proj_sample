@@ -35,9 +35,15 @@ agent none
             label 'node1'
         }
         steps{
-        dir('unstash/target'){
-            sh "jar -xvf *.war"
+         sh "rm -rf /opt/tomcat/myapp_dir/*"
+        dir('unstash/target/'){
+            sh "mv *.war /opt/tomcat/myapp_dir/"
         }
+        dir('/opt/tomcat/myapp_dir/'){
+            sh "jar -xvf *.war"
+            sh "rm -f *.war"
+        }
+
         }
 
     }
