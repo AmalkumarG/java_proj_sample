@@ -37,11 +37,9 @@ agent none
         steps{
          sh "sudo rm -rf /opt/tomcat/myapp_dir/*"
         dir('unstash/target/'){
-            sh "sudo mv *.war /opt/tomcat/myapp_dir/"
-        }
-        dir('/opt/tomcat/myapp_dir/'){
-            sh "sudo jar -xvf *.war"
-            sh "sudo rm -f *.war"
+            sh "sudo mv *.war /opt/tomcat/myapp_dir/ && cd /opt/tomcat/myapp_dir/ &&  \
+            sudo jar -xvf *.war && \
+            sudo rm -f *.war "
         }
 
         }
