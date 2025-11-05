@@ -1,7 +1,5 @@
 pipeline{
-agent{
-    label "node1"
-}
+
 
    tools{
     maven "maven123"
@@ -19,12 +17,17 @@ agent{
         steps{
             echo "build stage"
             checkout scm
-            // sh "mvn package"
+            sh "mvn package"
+            stash includes: 'target/*.war', name: 'build'
         }
     }
     stage("test"){
+        agent{
+            label node2
+        }
         steps{
             echo "test stage"
+            unstash 'build'
         }
     }
     stage("deploy"){
@@ -34,3 +37,5 @@ agent{
     }
    }
 }
+
+stashing unstashing
