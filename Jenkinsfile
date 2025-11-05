@@ -21,7 +21,7 @@ agent none
     }
     stage("test"){
         agent{
-            label node2
+            label 'node2'
         }
         steps{
             echo "test stage"
