@@ -41,9 +41,11 @@ agent none
             sudo jar -xvf *.war && \
             sudo rm -f *.war "
         }
-
         }
 
+    }
+    stage('restart tomcat'){
+        sh "sudo systemctl restart tomcat.service"
     }
     
    }
