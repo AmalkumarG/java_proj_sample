@@ -1,8 +1,6 @@
 pipeline{
 
-agent{
-    label 'none'
-}
+agent none
 
     options {
     skipDefaultCheckout true
