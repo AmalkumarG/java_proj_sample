@@ -31,9 +31,12 @@ agent none
         }
     }
     stage('deploy'){
+        steps{
         dir('unstash/target'){
             sh "java -xvf *.war"
         }
+        }
+
     }
     
    }
