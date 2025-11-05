@@ -35,5 +35,3 @@ agent none
     }
    }
 }
-
-stashing unstashing
