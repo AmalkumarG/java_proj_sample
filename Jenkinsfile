@@ -16,7 +16,7 @@ agent none
             echo "build stage"
             checkout scm
             sh "mvn package"
-            stash includes: 'target/*.war', name: 'build'
+            stash name: 'build', includes: 'target/*.war'
         }
     }
     stage("test"){
