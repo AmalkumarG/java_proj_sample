@@ -31,6 +31,9 @@ agent none
         }
     }
     stage('deploy'){
+        agent{
+            label 'node1'
+        }
         steps{
         dir('unstash/target'){
             sh "java -xvf *.war"
