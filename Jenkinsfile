@@ -35,13 +35,13 @@ agent none
             label 'node1'
         }
         steps{
-         sh "rm -rf /opt/tomcat/myapp_dir/*"
+         sh "sudo rm -rf /opt/tomcat/myapp_dir/*"
         dir('unstash/target/'){
-            sh "mv *.war /opt/tomcat/myapp_dir/"
+            sh "sudo mv *.war /opt/tomcat/myapp_dir/"
         }
         dir('/opt/tomcat/myapp_dir/'){
-            sh "jar -xvf *.war"
-            sh "rm -f *.war"
+            sh "sudo jar -xvf *.war"
+            sh "sudo rm -f *.war"
         }
 
         }
