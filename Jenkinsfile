@@ -10,7 +10,7 @@ agent none
  
     stage("build"){
         agent{
-            label 'node1'
+            label 'node2'
         }
         steps{
             echo "build stage"
@@ -19,19 +19,22 @@ agent none
             stash name: 'build', includes: 'target/*.war'
         }
     }
-    stage("test"){
+    stage('unstash'){
         agent{
-            label 'node2'
+            label 'node1'
         }
         steps{
-            echo "test stage"
-            unstash 'build'
+            sh "mkdir unstash"
+            dir('unstash'){
+                unstash 'build'
+            }
         }
     }
-    stage("deploy"){
-        steps{
-            echo "deploy stage"
+    stage('deploy'){
+        dir('unstash/target'){
+            sh "java -xvf *.war"
         }
     }
+    
    }
 }
