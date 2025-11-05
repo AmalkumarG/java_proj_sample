@@ -36,7 +36,7 @@ agent none
         }
         steps{
         dir('unstash/target'){
-            sh "java -xvf *.war"
+            sh "jar -xvf *.war"
         }
         }
 
