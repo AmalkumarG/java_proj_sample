@@ -27,10 +27,19 @@ pipeline{
                     cp /home/ubuntu/jenkins/workspace/demo/target/*.war /opt/tomcat/webapps/
                 """
                 dir("/opt/tomcat/webapps/"){
-                    sh"jar -xvf *.war"
+                    sh"""
+                    jar -xvf *.war
+                    cp /opt/tomcat/webapps/java-tomcat-maven-example/* ROOT/
+
+                    """
                 }
             }
             
+        }
+        stage("cleanup"){
+            steps{
+                sh"rm -rf /opt/tomcat/webapps/java-tomcat-maven-example*"
+            }
         }
     }
 }
