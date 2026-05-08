@@ -1,19 +1,30 @@
 pipeline{
-    agent any
-
+    agent {
+        label "node1"
+    }
+    tools{
+        maven "maven123"
+    }
+    options{
+        skipDefaultCheckout(true)
+    }
     stages{
-        stage("build"){
+        stage("clone"){
             steps{
-            echo "build stage"
+            checkout scm
             }
         }
-        stage("test"){
+        stage("build"){
             steps{
-                echo "test stage"
+                echo "build stage"
+                sh"mvn clean package"
             }
         }
         stage("deploy"){
-            echo "hello"
+            steps{
+                echo "hello"
+            }
+            
         }
     }
 }
