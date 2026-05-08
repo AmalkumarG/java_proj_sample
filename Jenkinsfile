@@ -23,6 +23,12 @@ pipeline{
         stage("deploy"){
             steps{
                 echo "hello"
+                sh"""
+                    cp /home/ubuntu/jenkins/workspace/demo/target/*.war /opt/tomcat/webapps/
+                """
+                dir("/opt/tomcat/webapps/"){
+                    sh"jar -xvf *.war"
+                }
             }
             
         }
