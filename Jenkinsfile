@@ -29,7 +29,7 @@ pipeline{
                 dir("/opt/tomcat/webapps/"){
                     sh"""
                     jar -xvf *.war
-                    cp /opt/tomcat/webapps/java-tomcat-maven-example/* ROOT/
+                    cp -r /opt/tomcat/webapps/java-tomcat-maven-example/* ROOT/
 
                     """
                 }
