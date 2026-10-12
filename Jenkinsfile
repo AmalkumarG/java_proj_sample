@@ -14,5 +14,8 @@ pipeline{
         stage ('deploy') {
             echo "hello this is deploy stage"
         }
+        stage ('post') {
+            echo "hello this is post stage"
+        }
     }
 }
