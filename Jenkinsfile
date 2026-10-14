@@ -26,7 +26,7 @@ pipeline{
                     jar -xvf java-tomcat-maven-example.war
                     rm -rf extracted/java-tomcat-maven-example.war
                 """
-                sh"sudo cp extracted/*  /opt/tomcat/myapp_dir"
+                sh"sudo cp -r extracted/*  /opt/tomcat/myapp_dir"
 
             }
             
