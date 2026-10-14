@@ -21,7 +21,6 @@ pipeline{
                 echo "hello this is deploy stage"
                 sh"sudo cp /home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war  /opt/tomcat/webapps"
                 dir("/opt/tomcat/webapps"){
-                    sh"jar -xvf java-tomcat-maven-example.war"
                     sh"sudo cp java-tomcat-maven-example/* /opt/tomcat/myapp_dir"
                 }
             }
