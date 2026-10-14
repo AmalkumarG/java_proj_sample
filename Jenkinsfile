@@ -1,11 +1,18 @@
 pipeline{
-    agent any
+    agent {
+        label 'node1'
+    }
     tools {
         maven 'maven123'
     }
+    options {
+        skipDefaultCheckout(true)
+    }
     stages {
-        stage ('build') {
+        stage ('clone') {
+
             steps {
+                checkout scm
                 sh 'mvn clean package'
             }
         }
