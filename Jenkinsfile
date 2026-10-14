@@ -19,7 +19,7 @@ pipeline{
         stage ('deploy') {
                 steps {
                 echo "hello this is deploy stage"
-                sh"mkdir extracted"
+                sh"mkdir -p extracted"
                 sh"cp target/java-tomcat-maven-example.war extracted"
                 sh"""
                     cd extracted
