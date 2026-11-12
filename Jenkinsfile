@@ -16,6 +16,10 @@ pipeline{
                 sh'mvn clean package'
                 sh 'mkdir -p extract'
                 sh 'cp /home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war /home/ubuntu/jenkins/workspace/demo/extract'
+                sh ' cd /home/ubuntu/jenkins/workspace/demo/extract'
+                sh 'java -xvf java-tomcat-maven-example.war'
+                
+            
             }
         }
         stage('deploy'){
