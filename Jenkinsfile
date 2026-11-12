@@ -20,6 +20,9 @@ pipeline{
                     cd /home/ubuntu/jenkins/workspace/demo/extract
                     jar -xvf java-tomcat-maven-example.war
                 '''
+                sh "rm -rf /home/ubuntu/jenkins/workspace/demo/extract/java-tomcat-maven-example.war"
+                sh 'cp -r /home/ubuntu/jenkins/workspace/demo/extract/* /opt/tomcat/myapp_dir/'
+                sh 'systemctl restart tomcat.service'
 
             
             }
