@@ -2,43 +2,20 @@ pipeline{
     agent {
         label "node1"
     }
-    tools{
-        maven "maven123"
-    }
-    options{
-        skipDefaultCheckout(true)
-    }
     stages{
-        stage("clone"){
+        stage('test'){
             steps{
-            checkout scm
+               echo "this is test" 
             }
         }
-        stage("build"){
+        stage('build'){
             steps{
-                echo "build stage2"
-                sh"mvn clean package"
+                echo "this is build"
             }
         }
-        stage("deploy"){
+        stage('deploy'){
             steps{
-                echo "hello"
-                sh"""
-                    cp /home/ubuntu/jenkins/workspace/demo/target/*.war /opt/tomcat/webapps/
-                """
-                dir("/opt/tomcat/webapps/"){
-                    sh"""
-                    jar -xvf *.war
-                    cp -r /opt/tomcat/webapps/java-tomcat-maven-example/* ROOT/
-
-                    """
-                }
-            }
-            
-        }
-        stage("cleanup"){
-            steps{
-                sh"rm -rf /opt/tomcat/webapps/java-tomcat-maven-example*"
+                echo 'this is deploy'
             }
         }
     }
