@@ -2,14 +2,13 @@ pipeline{
     agent {
         label "node1"
     }
+    options{
+        skipDefaultCheckout(true)
+    }
     stages{
-        stage('test'){
-            steps{
-               echo "this is test" 
-            }
-        }
         stage('build'){
             steps{
+                checkout scm
                 echo "this is build"
             }
         }
