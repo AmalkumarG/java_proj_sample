@@ -14,6 +14,8 @@ pipeline{
                 checkout scm
                 echo "this is build"
                 sh'mvn clean package'
+                sh 'mkdir -p extract'
+                sh 'cp /home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war /home/ubuntu/jenkins/workspace/demo/extract'
             }
         }
         stage('deploy'){
